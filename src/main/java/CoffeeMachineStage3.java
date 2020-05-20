@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class CoffeeMachine {
+public class CoffeeMachineStage3 {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -17,25 +17,20 @@ public class CoffeeMachine {
         System.out.println("Write how many cups of coffee you will need:");
         int numberOfCups = scanner.nextInt();
 
-        String msg = String.format("For %s cups of coffee you will need:", numberOfCups);
-        System.out.println(msg);
-
         calculateAmounts(numberOfCups, calculateDeliverableNumberOfCups(amountOfWater, amountOfMilk, amountOfCoffee));
     }
 
     //needs 200 ml of water, 50 ml of milk, and 15 g of coffee beans
     private static int calculateDeliverableNumberOfCups(int waterInput, int milkInput, int coffeeBeanInput) {
-        int water, milk, coffeeBean, deliverableNumberOfCups;
 
-        if (waterInput >= 200 || milkInput >= 50 || coffeeBeanInput >= 15) {
-            water = waterInput / 200;
-            milk = milkInput / 50;
-            coffeeBean = coffeeBeanInput / 15;
-            deliverableNumberOfCups = Math.min(water, milk);
-            deliverableNumberOfCups = Math.min(deliverableNumberOfCups, coffeeBean);
-        } else {
-            deliverableNumberOfCups = 0;
-        }
+        int numOfCupsFromGivenWater, numOfCupsFromGivenMilk, numOfCupsFromGivenCoffeeBean, deliverableNumberOfCups;
+
+        numOfCupsFromGivenWater = waterInput / 200;
+        numOfCupsFromGivenMilk = milkInput / 50;
+        numOfCupsFromGivenCoffeeBean = coffeeBeanInput / 15;
+        deliverableNumberOfCups = Math.min(numOfCupsFromGivenWater, numOfCupsFromGivenMilk);
+        deliverableNumberOfCups = Math.min(deliverableNumberOfCups, numOfCupsFromGivenCoffeeBean);
+
         return deliverableNumberOfCups;
     }
 
